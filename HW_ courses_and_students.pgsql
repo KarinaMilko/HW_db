@@ -222,11 +222,13 @@ WHERE e.mark > (
     );
 -- *Отримати перелік студентів, які ще не вивчали жодного предмету 
 -- (спробуйте це зробити різними способами).
-SELECT first_name, last_name, description
+
+SELECT *
 FROM students s 
-    INNER JOIN exams e ON s.id=e.id_stud
-    INNER JOIN courses c ON c.id=e.id_course
-WHERE mark IS NOT NULL;
+    LEFT JOIN exams e ON s.id=e.id_stud
+WHERE e.id IS NULL;
+
+
 -- (Умовні вирази:)
 -- Вивести
 -- студент | предмет | оцінка
